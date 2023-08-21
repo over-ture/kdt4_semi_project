@@ -1,12 +1,17 @@
-import requests
 import openai
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CodeReviewForm
 from .models import CodeReview
+
+
+@login_required
+def accounts_home(request):
+    return render(request, 'accounts/accounts_home.html')
 
 
 def signup(request):
@@ -26,6 +31,7 @@ def signup(request):
         return redirect('upload_code')
     return render(request, 'accounts/signup.html')
 
+
 def login_view(request):
     if request.method == "POST":
         # 로그인 로직
@@ -41,10 +47,21 @@ def login_view(request):
             return render(request, 'accounts/login.html', {'error': '아이디나 비밀번호가 올바르지 않습니다.'})
     return render(request, 'accounts/login.html')
 
+
 def logout_view(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
+@login_required
+def delete_account(request):
+    if request.method == 'POST':
+        user = request.user
+        logout(request)
+        user.delete()
+        return redirect('home')
+
+
+@login_required
 def upload_code(request):
     if request.method == 'POST':
         form = CodeReviewForm(request.POST, request.FILES)
