@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CodeReviewForm
+from .forms import CodeReviewForm, SignupForm
 from .models import CodeReview
 
 
@@ -16,20 +16,14 @@ def accounts_home(request):
 
 def signup(request):
     if request.method == "POST":
-        # 회원가입 로직
-        username = request.POST['username']
-        password = request.POST['password']
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('upload_code')
+    else:
+        form = SignupForm()
 
-        # 중복 사용자 확인
-        if User.objects.filter(username=username).exists():
-            messages.error(request, '이미 사용 중인 아이디입니다.')
-            return redirect('signup')
-
-        # 중복이 아니라면 생성
-        user = User.objects.create_user(username=username, password=password)
-
-        return redirect('upload_code')
-    return render(request, 'accounts/signup.html')
+    return render(request, 'accounts/signup.html', {'form': form})
 
 
 def login_view(request):
@@ -83,7 +77,7 @@ def upload_code(request):
     return render(request, 'accounts/upload_code.html', {'form': form})
 
 
-openai.api_key = ""
+openai.api_key = "YOUR API KEY"
 
 def get_code_review(input_code):
     response = openai.ChatCompletion.create(
@@ -102,11 +96,4 @@ def review_result(request, code_review_id):
 
     return render(request, 'accounts/review_result.html', {'code_review': code_review})
 
-def user_board(request):
-    posts = CodeReview.objects.all() #selectall _QuerySet
-    context = {'posts': posts}
-    return render(request,'accounts/user_board.html',context)
-
-if __name__ == '__main__':
-    print(get_code_review("print('Hello, world!')"))
 

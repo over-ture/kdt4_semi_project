@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
-from django.conf.urls.static import static # static 함수를 import
+from django.conf.urls.static import static  # static 함수를 import
 
 urlpatterns = [
     path('admin/', admin.site.urls),
