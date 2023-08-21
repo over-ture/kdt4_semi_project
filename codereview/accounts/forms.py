@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import CodeReview
 
 class CodeReviewForm(forms.ModelForm):
-    code = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 10, 'cols': 30}))
+    code = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 10, 'cols': 60}))
     class Meta:
         model = CodeReview
         fields = ['code', 'uploaded_file']
