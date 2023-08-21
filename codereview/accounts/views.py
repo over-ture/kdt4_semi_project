@@ -1,5 +1,4 @@
-
-from django.contrib import messages
+import openai
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -44,6 +43,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
 
 @login_required
 def delete_account(request):
