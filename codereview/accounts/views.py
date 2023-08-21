@@ -97,3 +97,9 @@ def review_result(request, code_review_id):
     return render(request, 'accounts/review_result.html', {'code_review': code_review})
 
 
+@login_required
+def my_reviews(request):
+    # 현재 로그인한 사용자의 리뷰 기록을 최신 순으로 가져오기
+    reviews = CodeReview.objects.filter(user=request.user).order_by('-timestamp')
+    return render(request, 'accounts/my_reviews.html', {'reviews': reviews})
+
