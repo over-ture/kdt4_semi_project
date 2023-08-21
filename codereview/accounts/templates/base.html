@@ -22,11 +22,11 @@
         {% if user.is_authenticated %}
           <a href="{% url 'accounts_home' %}" class="btn btn-primary">계정 관리</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'my_reviews' %}">내 리뷰 확인</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'user_board' %}">게시판</a>
+        <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
       </li>
       {% else %}
       <li class="nav-item">
