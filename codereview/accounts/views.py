@@ -1,7 +1,6 @@
-import openai
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, get_object_or_404
@@ -55,11 +54,6 @@ def delete_account(request):
         return redirect('home')
 
 
-def read_python_file(file):
-    """.py 파일을 읽어서 코드를 반환합니다"""
-    with file.open('r') as f:
-        return f.read()
-
 @login_required
 def upload_code(request):
     if request.method == 'POST':
@@ -86,7 +80,7 @@ openai.api_key = "YOUR API KEY"
 
 def get_code_review(input_code):
     response = openai.ChatCompletion.create(
-        model = "gpt-3.5-turbo", messages = [{"role": "user", "content": f"다음 파이썬 코드를 리뷰해 주세요:\n\n{input_code}"}]
+        model = "gpt-3.5-turbo", messages = [{"role": "user", "content": f"다음 파이썬 코드를 리뷰해 주세요. (자주 개행을 해 주세요):\n\n{input_code}"}]
     )
     return response.choices[0].message.content
 
