@@ -22,6 +22,7 @@ from django.conf.urls.static import static # static 함수를 import
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),  # accounts 앱의 URL을 포함시킴
+    path('', include('home.urls')),  # home 앱의 URL을 포함시킴
 ]
 
 if settings.DEBUG: # DEBUG가 True일 때만 작동
