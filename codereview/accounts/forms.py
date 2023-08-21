@@ -3,10 +3,11 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import CodeReview
 
 class CodeReviewForm(forms.ModelForm):
+    title = forms.CharField(max_length=100)
     code = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 10, 'cols': 60}))
     class Meta:
         model = CodeReview
-        fields = ['code', 'uploaded_file']
+        fields = ['title', 'code', 'uploaded_file']
 
     def clean(self):
         cleaned_data = super().clean()
