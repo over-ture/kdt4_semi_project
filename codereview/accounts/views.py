@@ -55,6 +55,11 @@ def delete_account(request):
         return redirect('home')
 
 
+def read_python_file(file):
+    """.py 파일을 읽어서 코드를 반환합니다"""
+    with file.open('r') as f:
+        return f.read()
+
 @login_required
 def upload_code(request):
     if request.method == 'POST':
@@ -77,7 +82,7 @@ def upload_code(request):
     return render(request, 'accounts/upload_code.html', {'form': form})
 
 
-openai.api_key = "YOUR API KEY"
+openai.api_key = "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"
 
 def get_code_review(input_code):
     response = openai.ChatCompletion.create(
