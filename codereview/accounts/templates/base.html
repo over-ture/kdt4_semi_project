@@ -25,6 +25,9 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'user_board' %}">게시판</a>
+      </li>
       {% else %}
       <li class="nav-item">
         <a class="nav-link" href="{% url 'login' %}">로그인</a>

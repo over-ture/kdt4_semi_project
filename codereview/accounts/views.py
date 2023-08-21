@@ -83,7 +83,7 @@ def upload_code(request):
     return render(request, 'accounts/upload_code.html', {'form': form})
 
 
-openai.api_key = "YOUR API KEY"
+openai.api_key = ""
 
 def get_code_review(input_code):
     response = openai.ChatCompletion.create(
@@ -102,5 +102,11 @@ def review_result(request, code_review_id):
 
     return render(request, 'accounts/review_result.html', {'code_review': code_review})
 
+def user_board(request):
+    posts = CodeReview.objects.all() #selectall _QuerySet
+    context = {'posts': posts}
+    return render(request,'accounts/user_board.html',context)
+
 if __name__ == '__main__':
     print(get_code_review("print('Hello, world!')"))
+
