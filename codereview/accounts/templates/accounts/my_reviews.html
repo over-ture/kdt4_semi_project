@@ -8,6 +8,7 @@
     <li>
         <strong>{{ review.timestamp }}</strong> -
         <a href="{% url 'review_result' review.id %}">리뷰 결과 보기</a>
+        <strong>제목:</strong> {{ review.title }}<br>
     </li>
     {% empty %}
     <li>아직 코드 리뷰 기록이 없습니다.</li>
