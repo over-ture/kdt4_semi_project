@@ -5,11 +5,10 @@ from django.contrib.auth.password_validation import CommonPasswordValidator
 from django.core.exceptions import ValidationError
 
 class CodeReviewForm(forms.ModelForm):
-    title = forms.CharField(max_length=100)
     code = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 10, 'cols': 60}))
     class Meta:
         model = CodeReview
-        fields = ['title', 'code', 'uploaded_file']
+        fields = ['code', 'uploaded_file']
 
     def clean(self):
         cleaned_data = super().clean()
