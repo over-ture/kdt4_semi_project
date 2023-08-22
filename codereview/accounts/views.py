@@ -104,7 +104,6 @@ def my_reviews(request):
 
 def delete_review(request, review_id):
     review = get_object_or_404(CodeReview, id=review_id)
-    # 리뷰의 소유자가 아니면 접근을 제한합니다.
     if request.user != review.user:
         raise PermissionDenied
     if request.method == 'POST':
