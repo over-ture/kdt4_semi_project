@@ -95,8 +95,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'CodeReview',
-        'USER': '',
-        'PASSWORD': '',
+        'USER': 'YOUR USERNAME',
+        'PASSWORD': 'YOUR PASSWORD',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -144,3 +144,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# SMTP 설정
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.naver.com'
+EMAIL_HOST_USER = 'erty70'
+EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'erty70@naver.com'

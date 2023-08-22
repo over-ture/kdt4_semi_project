@@ -1,6 +1,7 @@
 import openai
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CodeReviewForm, SignupForm
@@ -16,7 +17,9 @@ def signup(request):
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.email = form.cleaned_data['email']
+            user.save()
             return redirect('upload_code')
     else:
         form = SignupForm()
@@ -54,6 +57,22 @@ def delete_account(request):
         return redirect('home')
 
 
+from django.shortcuts import render
+from django.contrib.auth.models import User
+
+def find_username(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        try:
+            user = User.objects.get(email=email)
+            return render(request, 'accounts/username_result.html', {'username': user.username})
+        except User.DoesNotExist:
+            return render(request, 'accounts/find_username.html', {'error': 'Email not found!'})
+    else:
+        return render(request, 'accounts/find_username.html')
+
+
+
 @login_required
 def upload_code(request):
     if request.method == 'POST':
@@ -76,7 +95,7 @@ def upload_code(request):
     return render(request, 'accounts/upload_code.html', {'form': form})
 
 
-openai.api_key = ""
+openai.api_key = " YOUR API KEY"
 
 def get_code_review(input_code):
     response = openai.ChatCompletion.create(
