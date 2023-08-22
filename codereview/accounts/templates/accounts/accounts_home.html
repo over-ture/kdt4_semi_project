@@ -1,26 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<head>
-    <script>
-        function confirmDelete() {
-            var result = confirm("정말로 계정을 삭제하시겠습니까?");
-            if (result) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    </script>
-</head>
 <h2>계정 관리 페이지에 오신 걸 환영합니다.<br> 사용중인 계정: {{ request.user.username }}</h2>
 <p>
     계정을 삭제하실 때 유의하세요! 삭제하시면 복구할 수 없습니다.
 </p>
 
-<form method="post" action="{% url 'delete_account' %}" onsubmit="return confirmDelete();">
+<form method="post" action="{% url 'delete_account' %}">
     {% csrf_token %}
-    <button type="submit"class="btn btn-danger">계정 삭제</button>
+    <input type="submit" value="계정 삭제">
 </form>
 {% endblock %}
 ```
