@@ -6,14 +6,15 @@
 <ul>
     {% for review in reviews %}
     <li>
+        <strong>제목:</strong> {{ review.title }}<br>
         <strong>{{ review.timestamp }}</strong> -
         <a href="{% url 'review_result' review.id %}">리뷰 결과 보기</a>
-        <strong>제목:</strong> {{ review.title }}<br>
         <form method="post" action="{% url 'delete_review' review.id %}">
             {% csrf_token %}
             <button type="submit">코드 리뷰 삭제</button>
 </form>
     </li>
+    <br>
     {% empty %}
     <li>아직 코드 리뷰 기록이 없습니다.</li>
     {% endfor %}
