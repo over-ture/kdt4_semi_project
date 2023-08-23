@@ -1,22 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>내 코드 리뷰 기록</h1>
+<h1 class="banner_text" style="font-size: 60px; color: khaki; margin-top: 50px; margin-bottom: 30px;">My Code Review</h1>
 
-<ul>
+<div class="row">
     {% for review in reviews %}
-    <li>
-        <strong>제목:</strong> {{ review.title }}<br>
-        <strong>{{ review.timestamp }}</strong> -
-        <a href="{% url 'review_result' review.id %}">리뷰 결과 보기</a>
-        <form method="post" action="{% url 'delete_review' review.id %}">
-            {% csrf_token %}
-            <button type="submit">코드 리뷰 삭제</button>
-</form>
-    </li>
-    <br>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="font-size: 25px; ">{{ review.title }}</h5>
+                <p class="card-text">{{ review.timestamp }}</p>
+                <a href="{% url 'review_result' review.id %}" class="btn btn-primary">Show Review</a>
+                <form method="post" action="{% url 'delete_review' review.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger" onclick="return confirmDelete();">Delete Review</button>
+                </form>
+            </div>
+        </div>
+    </div>
     {% empty %}
-    <li>아직 코드 리뷰 기록이 없습니다.</li>
+    <div class="col text-center">
+        <p style=" font-size: 25px; color: beige;">코드 리뷰 기록이 없습니다.</p>
+    </div>
     {% endfor %}
-</ul>
+</div>
+
+<script>
+    function confirmDelete() {
+        var result = confirm("정말로 리뷰를 삭제하시겠습니까?");
+        if (result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
 {% endblock %}
