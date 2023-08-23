@@ -2,9 +2,11 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CodeReview
 
+
 class CodeReviewForm(forms.ModelForm):
-    title = forms.CharField(max_length=100)
+    title = forms.CharField(max_length=100, empty_value="제목 없음", required=False)
     code = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 10, 'cols': 60}))
+
     class Meta:
         model = CodeReview
         fields = ['title', 'code', 'uploaded_file']
@@ -17,8 +19,11 @@ class CodeReviewForm(forms.ModelForm):
             raise forms.ValidationError('코드나 파일 중 하나는 반드시 입력해야 합니다.')
         return cleaned_data
 
+
 class SignupForm(UserCreationForm):
     email = forms.EmailField(required=True, label='이메일', widget=forms.EmailInput(attrs={'class': 'form-control'}))
     username = forms.CharField(required=True, label='아이디', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password1 = forms.CharField(required=True, label='비밀번호', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(required=True, label='비밀번호 확인', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password1 = forms.CharField(required=True, label='비밀번호',
+                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(required=True, label='비밀번호 확인',
+                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))

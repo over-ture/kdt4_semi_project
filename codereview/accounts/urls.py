@@ -10,6 +10,7 @@ urlpatterns = [
     path('upload/', views.upload_code, name='upload_code'),
     path('review/<int:code_review_id>/', views.review_result, name='review_result'),
     path('delete/', views.delete_account, name='delete_account'),
+    path('delete_review/<int:code_review_id>/', views.delete_review, name='delete_review'),
     path('my_reviews/', views.my_reviews, name='my_reviews'),
     path('find_username/', views.find_username, name='find_username'),
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
@@ -17,3 +18,4 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
+

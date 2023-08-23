@@ -95,11 +95,11 @@ def upload_code(request):
     return render(request, 'accounts/upload_code.html', {'form': form})
 
 
-openai.api_key = " YOUR API KEY"
+openai.api_key = "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"
 
 def get_code_review(input_code):
     response = openai.ChatCompletion.create(
-        model = "gpt-3.5-turbo", messages = [{"role": "user", "content": f"다음 파이썬 코드를 리뷰해 주세요. (자주 개행을 해 주세요):\n\n{input_code}"}]
+        model = "gpt-3.5-turbo", messages = [{"role": "user", "content": f"다음 파이썬 코드를 리뷰해 주세요. 리뷰 내용은 한글로 작성하세요.:\n\n{input_code}"}]
     )
     return response.choices[0].message.content
 
@@ -120,4 +120,16 @@ def my_reviews(request):
     # 현재 로그인한 사용자의 리뷰 기록을 최신 순으로 가져오기
     reviews = CodeReview.objects.filter(user=request.user).order_by('-timestamp')
     return render(request, 'accounts/my_reviews.html', {'reviews': reviews})
+
+@login_required
+def delete_review(request, code_review_id):
+    review = get_object_or_404(CodeReview, id=code_review_id)
+
+    # 리뷰의 소유자가 아니면 접근을 제한합니다.
+    if request.user != review.user:
+        raise PermissionDenied
+
+    review.delete()
+    return redirect('my_reviews')
+
 
