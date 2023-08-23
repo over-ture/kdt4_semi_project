@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>코드 작성 & 파일 업로드</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">리뷰 받기</button>
-</form>
+<div class="container" style= "padding: 50px; height: 80vh;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2>코드 작성 & 파일 업로드</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">리뷰 받기</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

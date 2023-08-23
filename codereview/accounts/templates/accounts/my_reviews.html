@@ -1,22 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>내 코드 리뷰 기록</h1>
+<div class="container" style=" padding: 50px; height: 80vh;">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h1>내 코드 리뷰 기록</h1>
 
-<ul>
-    {% for review in reviews %}
-    <li>
-        <strong>{{ review.timestamp }}</strong> -
-        <a href="{% url 'review_result' review.id %}">리뷰 결과 보기</a>
-        <strong>제목:</strong> {{ review.title }}<br>
-        <form method="post" action="{% url 'delete_review' review.id %}">
-            {% csrf_token %}
-            <button type="submit">코드 리뷰 삭제</button>
-</form>
-    </li>
-    {% empty %}
-    <li>아직 코드 리뷰 기록이 없습니다.</li>
-    {% endfor %}
-</ul>
+            <ul class="list-group">
+                {% for review in reviews %}
+                <li class="list-group-item">
+                    <strong>{{ review.timestamp }}</strong> -
+                    <a href="{% url 'review_result' review.id %}">리뷰 결과 보기</a>
+                    <strong>제목:</strong> {{ review.title }}
+                </li>
+                {% empty %}
+                <li class="list-group-item">아직 코드 리뷰 기록이 없습니다.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}
-```
