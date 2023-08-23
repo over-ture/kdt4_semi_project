@@ -40,10 +40,10 @@
    <div class="header_section">
       <div class="header_main">
          <div class="container-fluid">
-            <div class="logo"><a href="index.html" style="font-family: 'Poppins', sans-serif; color: white; font-size: 24px;">CodeReview</a></div>
+            <div class="logo"><a href="{% url 'home' %}" style="font-family: 'Poppins', sans-serif; color: white; font-size: 24px;">CodeReview</a></div>
             <div class="menu_main">
                <ul>
-                  <li class="active"><a href="index.html">Home</a></li>
+                  <li class="active"><a href="{% url 'home' %}">Home</a></li>
                   {% if user.is_authenticated %}
                   <li><a href="{% url 'my_reviews' %}">내 리뷰 확인</a></li>
                   <li><a href="{% url 'logout' %}">로그아웃</a></li>
@@ -57,20 +57,9 @@
          </div>
       </div>
       <!-- banner section start -->
-      <div class="banner_section layout_padding">
-         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <h1 class="banner_taital">GPT Code Review</h1>
-                     <p class="banner_text" style="margin-top: 23px;">GPT 3.5 turbo를 이용한 파이썬 코드리뷰를 받아볼 수 있습니다</p>
-                     <div class="read_bt"><a href="{% url 'upload_code' %}" style="font-weight: bold;">코드 리뷰하기</a></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
       <!-- banner section end -->
+      {% block content %}
+      {% endblock %}
    </div>
    <!-- header section end -->
    <!-- copyright section start -->

@@ -1,24 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <h2>로그인</h2>
-    {% if error %}
-    <div class="alert alert-danger">
-        {{ error }}
-    </div>
-    {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+
+<div class="banner_section layout_padding">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                        <h1 class="banner_text" style="font-size: 60px; color: khaki;">LogIn</h1>
+                        {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                        <form method="post" id="login-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username" style="font-size: 25px; color: khaki;">Username:</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" style="font-size: 25px; color: khaki;">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="read_bt"><a href="#" id="login-button" style="font-weight: bold;">로그인</a></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">로그인</button>
-    </form>
 </div>
+
+<script>
+document.getElementById('login-button').addEventListener('click', function() {
+    document.getElementById('login-form').submit();
+});
+</script>
+
 {% endblock %}

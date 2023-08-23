@@ -1,16 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>GPT Code Review에 오신 걸 환영합니다.</h1>
-    <p>GPT 3.5 turbo를 이용한 파이썬 코드 리뷰를 받아볼 수 있습니다.</p>
+    <div class="banner_section layout_padding">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                        <h1 class="banner_taital">GPT Code Review</h1>
+                        <p class="banner_text" style="margin-top: 23px;">GPT 3.5 turbo를 이용한 파이썬 코드리뷰를 받아볼 수 있습니다</p>
+                        {% if user.is_authenticated %}
+                            <div class="read_bt"><a href="{% url 'upload_code' %}" style="font-weight: bold;">코드 리뷰하기</a></div>
+                        {% else %}
+                            <p>
+                                <div class="read_bt"><a href="{% url 'login' %}" style="font-weight: bold;">로그인</a></div>
 
-    {% if user.is_authenticated %}
-        <a href="{% url 'upload_code' %}" class="btn btn-primary">코드 리뷰하기</a>
-    {% else %}
-        <p>
-            <a href="{% url 'login' %}" class="btn btn-primary">로그인</a>
-            <a href="{% url 'signup' %}" class="btn btn-primary">회원가입</a>
-        </p>
-    {% endif %}
+                                <div class="read_bt"><a href="{% url 'signup' %}" style="font-weight: bold;">회원가입</a></div>
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
-```
