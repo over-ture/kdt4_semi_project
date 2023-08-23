@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, get_object_or_404
+from pygments import highlight
+from pygments.formatters.html import HtmlFormatter
+from pygments.lexers import get_lexer_by_name
+
 from .forms import CodeReviewForm, SignupForm
 from .models import CodeReview
 
@@ -57,9 +61,6 @@ def delete_account(request):
         return redirect('home')
 
 
-from django.shortcuts import render
-from django.contrib.auth.models import User
-
 def find_username(request):
     if request.method == "POST":
         email = request.POST.get("email")
@@ -70,7 +71,6 @@ def find_username(request):
             return render(request, 'accounts/find_username.html', {'error': 'Email not found!'})
     else:
         return render(request, 'accounts/find_username.html')
-
 
 
 @login_required
@@ -97,12 +97,12 @@ def upload_code(request):
 
 openai.api_key = "YOUR API KEY"
 
+
 def get_code_review(input_code):
     response = openai.ChatCompletion.create(
         model = "gpt-3.5-turbo", messages = [{"role": "user", "content": f"다음 파이썬 코드를 리뷰해 주세요. 리뷰 내용은 한글로 작성하세요.:\n\n{input_code}"}]
     )
     return response.choices[0].message.content
-
 
 
 def review_result(request, code_review_id):
@@ -121,6 +121,7 @@ def my_reviews(request):
     reviews = CodeReview.objects.filter(user=request.user).order_by('-timestamp')
     return render(request, 'accounts/my_reviews.html', {'reviews': reviews})
 
+
 @login_required
 def delete_review(request, code_review_id):
     review = get_object_or_404(CodeReview, id=code_review_id)
@@ -131,5 +132,3 @@ def delete_review(request, code_review_id):
 
     review.delete()
     return redirect('my_reviews')
-
-

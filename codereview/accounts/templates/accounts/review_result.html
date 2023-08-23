@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 
+
 {% block content %}
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/default.css' %}">
+{% load code_highlighting %}
 <h2>코드 리뷰 결과</h2>
 <p><strong>제목:</strong> {{ code_review.title }}</p>
 <p><strong>제출된 코드:</strong></p>
-<pre>{{ code_review.code }}</pre>
+<div class="code">
+    {{ code_review.code|highlight_code:"python"|safe }}
+</div>
 
 <p><strong>리뷰 결과:</strong></p>
-<pre>{{ code_review.review_result }}</pre>
+<div class="code">
+    {{ code_review.review_result|highlight_code:"python"|safe }}
+</div>
 
 <a href="{% url 'upload_code' %}">다른 코드 리뷰하기</a>
 {% endblock %}
