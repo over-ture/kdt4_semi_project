@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container" style=" padding: 80px; ">
+<div class="container" style=" padding: 60px; ">
     <div class="row justify-content-center">
         <div class="col-md-16">
-            <h2>코드 리뷰 결과</h2>
-            <p><strong>제목:</strong> {{ code_review.title }}</p>
-            <p><strong>제출된 코드:</strong></p>
+            <h2 style="margin-bottom: 20px;">코드 리뷰 결과</h2>
+            <p><strong>제목 :</strong> {{ code_review.title }}</p>
+            <p><strong>제출된 코드</strong></p>
             <pre class="code-block">{{ code_review.code }}</pre>
-            <p><strong>리뷰 결과:</strong></p>
+            <p><strong>리뷰 결과</strong></p>
             <pre class="code-block">{{ code_review.review_result }}</pre>
 
             <a href="{% url 'upload_code' %}" class="btn btn-primary">다른 코드 리뷰하기</a>
