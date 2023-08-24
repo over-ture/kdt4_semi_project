@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/default.css' %}">
-{% load code_highlighting %}
-<div class="container" style=" padding: 80px; ">
-    <div class="row justify-content-center">
-        <div class="col-md-16">
-            <h2>코드 리뷰 결과</h2>
-            <p><strong>제목:</strong> {{ code_review.title|highlight_code:"python"|safe }}</p>
-            <p><strong>제출된 코드:</strong></p>
-            <pre class="code-block">{{ code_review.code|highlight_code:"python"|safe }}</pre>
-            <p><strong>리뷰 결과:</strong></p>
-            <pre class="code-block">{{ code_review.review_result|highlight_code:"python"|safe }}</pre>
 
-            <a href="{% url 'upload_code' %}" class="btn btn-primary">다른 코드 리뷰하기</a>
-        </div>
+<div style="background-color: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); margin-top:40px;">
+    <h1 class="banner_text" style="font-size: 60px; color: khaki; margin-top: 10px; margin-bottom: 20px;">코드 리뷰 결과</h1>
+
+    <p style="font-size:30px;"><strong>제목:</strong> {{ code_review.title }}</p>
+    <br>
+    <p style="font-size:20px;"><strong>제출된 코드:</strong></p>
+    <div style="background-color: rgba(255, 255, 255, 0.95); padding: 10px; border: 1px solid #ccc; border-radius: 5px; overflow-y: auto; max-height: 300px; font-size:18px; width: 80%; margin: 0 auto;">
+        <pre style="white-space: pre-wrap;">{{ code_review.code }}</pre>
+    </div>
+    <p style="font-size:20px;"><strong>리뷰 결과:</strong></p>
+    <div style="background-color: rgba(255, 255, 255, 0.95); padding: 10px; border: 1px solid #ccc; border-radius: 5px; overflow-y: auto; max-height: 300px; font-size:18px; width: 80%; margin: 20px auto;">
+        <pre style="white-space: pre-wrap;">{{ code_review.review_result }}</pre>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3">
+        <a href="{% url 'upload_code' %}" class="btn btn-primary">다른 코드 리뷰하기</a>
     </div>
 </div>
 {% endblock %}

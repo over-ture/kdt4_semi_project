@@ -11,6 +11,10 @@ class CodeReviewForm(forms.ModelForm):
         model = CodeReview
         fields = ['title', 'code', 'uploaded_file']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['code'].initial = ""  # 빈 문자열로 초기화
+
     def clean(self):
         cleaned_data = super().clean()
         code = cleaned_data.get('code')
