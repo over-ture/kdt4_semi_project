@@ -4,14 +4,13 @@
 <div class="container" style=" padding: 50px; height: 80vh;">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <h2 style= "margin-bottom: 30px;" >내 코드 리뷰 기록</h2>
-
+            <h2 style="text-decoration: none; color: #3498DB; font-weight: bold; font-size: 30px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); padding: 20px;" >내 코드 리뷰 기록</h2>
             <ul class="list-group">
                 {% for review in reviews %}
                 <li class="list-group-item">
                     <strong>{{ review.timestamp }}</strong> -
                     <a href="{% url 'review_result' review.id %}">리뷰 결과 보기</a>
-                    <strong>제목:</strong> {{ review.title }}
+                    <strong>제목 :</strong> {{ review.title }}
                 </li>
                 {% empty %}
                 <li class="list-group-item">아직 코드 리뷰 기록이 없습니다.</li>

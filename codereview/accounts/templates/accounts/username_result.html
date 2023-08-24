@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
+<div class="container" style="padding: 80px;">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="text-center">
-                <h2>아이디 찾기</h2>
-                <p>아이디: {{ username }}</p>
-                <a href="{% url 'login' %}" class="btn btn-primary">로그인하러 가기</a>
+                <h2 style="text-decoration: none; color: #3498DB; font-weight: bold; font-size: 24px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);">아이디 찾기</h2>
+                <p style="font-size: 20px; margin-top: 20px;">일치하는 아이디 :</p>
+                <p style="font-size: 34px; color: #007BFF; margin-bottom: 20px;">   {{ username }} </p>
+                <a href="{% url 'login' %}" class="btn btn-primary" style="font-size: 15px;">로그인 </a>
             </div>
         </div>
     </div>
