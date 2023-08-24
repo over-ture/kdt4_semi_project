@@ -1,17 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container" style=" padding: 60px; ">
-    <div class="row justify-content-center">
-        <div class="col-md-16">
-            <h2 style="margin-bottom: 20px;">코드 리뷰 결과</h2>
-            <p><strong>제목 :</strong> {{ code_review.title }}</p>
+<div class="container" style=" padding : 36px;">
+    <div class="row justify-content-center"  >
+        <div class="col-md-13">
+            <h2 style="text-decoration: none; color: #3498DB; font-weight: bold; font-size: 30px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); padding: 20px;">코드 리뷰 결과</h2>
+            <p style="font-size: 20px;"><strong>제목 :</strong> {{ code_review.title }}</p>
+            <div class="code-container">
             <p><strong>제출된 코드</strong></p>
-            <pre class="code-block">{{ code_review.code }}</pre>
-            <p><strong>리뷰 결과</strong></p>
-            <pre class="code-block">{{ code_review.review_result }}</pre>
+            <pre class="code-block" style=" font-size: 18px; color: #4CAF50;">{{ code_review.code }}</pre>
+            </div>
 
-            <a href="{% url 'upload_code' %}" class="btn btn-primary">다른 코드 리뷰하기</a>
+<div class="review-container">
+    <p><strong>리뷰 결과</strong></p>
+    <pre class="code-block" style="font-size: 16px;">{{ code_review.review_result }}</pre>
+</div>
+
+<div class="btn-container" >
+    <a href="{% url 'upload_code' %}" class="btn btn-primary" >다른 코드 리뷰하기</a>
+</div>
         </div>
     </div>
 </div>
