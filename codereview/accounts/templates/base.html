@@ -90,6 +90,11 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
+        .code-block {
+            font-size: 16px;
+            white-space: pre-line;
+            width: 1300px;
+        }
     </style>
 </head>
 <body>
@@ -148,8 +153,12 @@
             </div>
         </div>
     </footer>
-
-
+    <script>
+        window.onload = function() {
+        var codeBlock = document.getElementById("codeBlock");
+        codeBlock.textContent = codeBlock.textContent.trim();
+    };
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
