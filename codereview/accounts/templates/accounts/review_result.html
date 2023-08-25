@@ -3,15 +3,13 @@
 {% block content %}
 
 <div style="background-color: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); margin-top:40px;">
-    <h1 class="banner_text" style="font-size: 60px; color: khaki; margin-top: 10px; margin-bottom: 20px;">코드 리뷰 결과</h1>
+    <h1 class="banner_text" style="font-size: 60px; color: #555555; margin-top: 10px; margin-bottom: 20px;">{{ code_review.title }}</h1>
 
-    <p style="font-size:30px;"><strong>제목:</strong> {{ code_review.title }}</p>
-    <br>
-    <p style="font-size:20px;"><strong>제출된 코드:</strong></p>
+    <p style="font-size:20px;"><strong>코드:</strong></p>
     <div style="background-color: rgba(255, 255, 255, 0.95); padding: 10px; border: 1px solid #ccc; border-radius: 5px; overflow-y: auto; max-height: 300px; font-size:18px; width: 80%; margin: 0 auto;">
         <pre style="white-space: pre-wrap;">{{ code_review.code }}</pre>
     </div>
-    <p style="font-size:20px;"><strong>리뷰 결과:</strong></p>
+    <p style="font-size:20px;"><strong>리뷰:</strong></p>
     <div style="background-color: rgba(255, 255, 255, 0.95); padding: 10px; border: 1px solid #ccc; border-radius: 5px; overflow-y: auto; max-height: 300px; font-size:18px; width: 80%; margin: 20px auto;">
         <pre style="white-space: pre-wrap;">{{ code_review.review_result }}</pre>
     </div>
