@@ -10,10 +10,10 @@
             <div class="card-body text-center">
                 <h5 class="card-title" style="font-size: 25px; ">{{ review.title }}</h5>
                 <p class="card-text">{{ review.timestamp }}</p>
-                <a href="{% url 'review_result' review.id %}" class="btn btn-primary">Show Review</a>
+                <a href="{% url 'review_result' review.id %}" class="btn btn-primary">리뷰 확인하기</a>
                 <form method="post" action="{% url 'delete_review' review.id %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger" onclick="return confirmDelete();">Delete Review</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirmDelete();">리뷰 삭제하기</button>
                 </form>
             </div>
         </div>

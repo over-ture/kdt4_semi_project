@@ -6,11 +6,11 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="container">
-                    <h2 class="banner_text" style="font-size: 60px; color: khaki;">Write & Upload Code</h2>
+                    <h2 class="banner_text" style="font-size: 60px; color: khaki;">WRITE & UPLOAD CODE</h2>
                     <form method="post" enctype="multipart/form-data" id="review-form">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label for="{{ form.title.id_for_label }}" style="font-size: 25px; color: khaki;">TITLE</label>
+                            <label for="{{ form.title.id_for_label }}" style="font-size: 25px; color: khaki;">제목</label>
                             <input type="{{ form.title.field.widget.input_type }}"
                                    name="{{ form.title.html_name }}"
                                    id="{{ form.title.id_for_label }}"
@@ -18,7 +18,7 @@
                                    {% if form.title.value %}value="{{ form.title.value|stringformat:'s' }}"{% endif %}>
                         </div>
                         <div class="form-group">
-                            <label for="{{ form.code.id_for_label }}" style="font-size: 25px; color: khaki;">CODE</label>
+                            <label for="{{ form.code.id_for_label }}" style="font-size: 25px; color: khaki;">코드</label>
                             <textarea name="{{ form.code.html_name }}"
                                       id="{{ form.code.id_for_label }}"
                                       rows="10"
@@ -26,11 +26,11 @@
                                       class="form-control">{{ form.code.value|stringformat:'s' }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label style="font-size: 25px; color: khaki;">UPLOAD</label>
+                            <label style="font-size: 25px; color: khaki;">코드 업로드</label>
                             {{ form.uploaded_file }}
                         </div>
 
-                        <div class="read_bt"><a href="#" id="review-button" style="font-weight: bold;">Commit</a></div>
+                        <div class="read_bt"><a href="#" id="review-button" style="font-weight: bold;">제출하기</a></div>
                     </form>
                 </div>
             </div>
