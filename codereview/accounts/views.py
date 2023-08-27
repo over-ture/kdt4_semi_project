@@ -95,7 +95,7 @@ def upload_code(request):
     return render(request, 'accounts/upload_code.html', {'form': form})
 
 
-openai.api_key = ""
+openai.api_key = "YOUR_API_KEY"
 
 def get_code_review(input_code):
     response = openai.ChatCompletion.create(
